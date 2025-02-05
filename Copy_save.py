@@ -1,65 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
-
-
-pip install pillow pyperclip
-
-
-
-# In[6]:
-
-
-pip install pystray
-
-
-# In[3]:
-
-
-import os
-import time
-from PIL import ImageGrab, Image
-
-# Folder where images will be saved
-save_folder = r"Pictures\Screenshots"
-os.makedirs(save_folder, exist_ok=True)
-
-# Function to save an image with a unique name
-def save_image(image, folder):
-    file_name = f"{int(time.time())}.png"  # Unique file name using timestamp
-    image_path = os.path.join(folder, file_name)
-    image.save(image_path, "PNG")
-    print(f"Image saved as {image_path}")
-
-# Function to continuously check clipboard for images
-def monitor_clipboard():
-    print("Monitoring clipboard for images. Press Ctrl+C to stop.")
-    last_clipboard_image = None
-
-    while True:
-        try:
-            # Check if there's an image in the clipboard
-            clipboard_image = ImageGrab.grabclipboard()
-            
-            # If an image is found and it's different from the last one, save it
-            if isinstance(clipboard_image, Image.Image) and clipboard_image != last_clipboard_image:
-                save_image(clipboard_image, save_folder)
-                last_clipboard_image = clipboard_image
-
-            time.sleep(1)  # Check every second
-
-        except KeyboardInterrupt:
-            print("\nProgram terminated by user.")
-            break
-        except Exception as e:
-            print(f"Error: {e}")
-
-if __name__ == "__main__":
-    monitor_clipboard()
-
-
-# In[1]:
+# In[ ]:
 
 
 import time
@@ -72,7 +14,7 @@ import pystray
 from pystray import MenuItem as item
 from PIL import Image as PILImage
 
-save_folder = r"C:\Users\uzair\Pictures\Screenshots"
+save_folder = os.path.join(os.path.expanduser("~"), "Pictures", "Screenshots")
 os.makedirs(save_folder, exist_ok=True)
 
 monitoring = False
@@ -146,13 +88,7 @@ if __name__ == "__main__":
     threading.Thread(target=create_gui).start()
 
 
-# In[9]:
-
-
-pip install pyinstaller
-
-
-# In[2]:
+# In[ ]:
 
 
 
