@@ -22,7 +22,7 @@ import time
 from PIL import ImageGrab, Image
 
 # Folder where images will be saved
-save_folder = r"C:\Users\uzair\Pictures\Screenshots"
+save_folder = r"Pictures\Screenshots"
 os.makedirs(save_folder, exist_ok=True)
 
 # Function to save an image with a unique name
